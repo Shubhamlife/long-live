@@ -14,10 +14,34 @@
     </audio>
     
     <!-- Background Video -->
-    <video autoplay loop muted playsinline id="bg-video">
-        <source src="Saved Pictures/manaliseen.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
-    </video>
+<video autoplay muted playsinline id="bg-video">
+    <source id="video-source" src="Saved Pictures/manaliseen.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+
+<script>
+    let videos = [
+        "Saved Pictures/manaliseen.mp4",
+        "Saved Pictures/anujj.mp4",
+        "Saved Pictures/skyy1.mp4",
+        "Saved Pictures/beautyseen.mp4"
+    ];
+    
+    let currentVideoIndex = 0;
+    let videoElement = document.getElementById("bg-video");
+    let sourceElement = document.getElementById("video-source");
+
+    videoElement.addEventListener("ended", function() {
+        // Switch to the next video in the list
+        currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+        sourceElement.src = videos[currentVideoIndex];
+
+        videoElement.load();  // Reload the video
+        videoElement.play();  // Play the new video
+    });
+</script>
+
+
 
     <header>
         <h1>HEY! Its your RAMBO SKY here</h1>
